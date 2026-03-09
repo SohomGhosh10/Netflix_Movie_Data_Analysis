@@ -1,170 +1,186 @@
-Netflix Movie Data Analysis Dashboard
+# Netflix Movie Data Analysis Dashboard
+Interactive Netflix-style content analysis dashboard using **Google Sheets** with pivot insights and investment vs return views.
 
-An interactive Netflix-style content analytics dashboard built using Google Sheets and Microsoft Excel.
-This project analyzes a synthetic Netflix-style dataset to extract insights related to content distribution, financial performance, and audience ratings.
+---
 
-The workflow includes data cleaning, pivot-table analysis, and dashboard visualization, resulting in a concise analytical dashboard useful for exploratory reporting and decision-making.
+## 1. Project Title
+**Netflix Movie Data Analysis Using Google Sheets**
 
-Project Overview
+---
 
-This project explores a Netflix-like catalog containing 1040 content records with attributes such as:
+## 2. Project Overview
 
-Content Type
+This project analyzes a Netflix-style content catalog to uncover insights on content distribution, financial performance, and audience-related indicators.
 
-Genre
+The workflow starts from raw data and proceeds through cleaning, pivot-table analysis, and dashboard visualization. The final output provides a compact analytical view that can support exploratory reporting and business-oriented content decisions.
 
-Production Budget
+### Key Objectives
 
-Box Office Revenue
+- Analyze content mix across Movies, TV Series, Documentaries, and related formats
+- Compare production investment against box office returns
+- Evaluate average duration and IMDb rating by content type
+- Assess country-level contribution to investment and returns
+- Build a dashboard-ready Excel analysis layer from the raw dataset
 
-IMDb Rating
+---
 
-Country of Origin
+## 3. Project Structure
 
-Language
+| Folder | File | Description |
+|---|---|---|
+| Raw Dataset | `Raw Dataset/Movies.csv` | Original source dataset |
+| Clean Dataset | `Clean Dataset/Clean movies.xlsx` | Cleaned workbook with analysis sheets |
+| Clean Dataset | `Clean Dataset/Clean movies - movies.pdf` | PDF export of cleaned sheet |
+| Pivot Tables and Calculations | `Pivot Tables and Calculations/Movies Pivot Data Analysis1.xlsx` | Pivot analysis workbook (v1) |
+| Pivot Tables and Calculations | `Pivot Tables and Calculations/Movies Pivot Data Analysis2.xlsx` | Pivot analysis workbook (v2) |
+| Dashboard | `Dashboard/Screenshot 2026-02-24 011043.png` | Dashboard screenshot |
 
-The dataset was analyzed using Excel pivot tables and charts to identify trends and build a visual dashboard summarizing key insights.
+---
 
-Key Objectives
+## 4. Data Dictionary
 
-Analyze the distribution of Netflix content types
+| Column Name | Data Type | Description |
+|---|---|---|
+| `movie_id` | Text | Unique identifier in `movie_####` format |
+| `title` | Text | Name of the movie/content title |
+| `content_type` | Text | Content category (Movie, TV Series, Documentary, etc.) |
+| `genre_primary` | Text | Primary genre |
+| `genre_secondary` | Text | Secondary genre |
+| `release_year` | Integer | Release year |
+| `duration_minutes` | Integer | Runtime in minutes |
+| `rating` | Text | Content certification rating |
+| `language` | Text | Primary language |
+| `country_of_origin` | Text | Country of production |
+| `imdb_rating` | Decimal | IMDb score (0-10) |
+| `production_budget` | Decimal | Production budget |
+| `box_office_revenue` | Decimal | Box office revenue |
+| `number_of_seasons` | Integer | Number of seasons (series content) |
+| `number_of_episodes` | Integer | Number of episodes (series content) |
+| `is_netflix_original` | Boolean | Netflix Original flag (`TRUE/FALSE`) |
+| `added_to_platform` | Date | Date added to platform |
+| `content_warning` | Boolean | Content warning flag (`TRUE/FALSE`) |
 
-Compare production investment vs box office returns
+---
 
-Evaluate average duration and IMDb ratings
+## 5. Data Summary
 
-Identify top producing countries and languages
+- Total records: **1,040**
+- Total columns: **18**
+- Missing values: **0** (all columns complete)
+- Release year range: **1953-2024**
+- Added to platform range: **2020-08-02 to 2025-08-01**
+- IMDb rating (min-max-avg): **0.5 - 10.0 - 6.273**
+- Netflix Originals: **318 (30.58%)**
+- Content warning flagged: **201 (19.33%)**
+- Total production budget: **11,560,030,704**
+- Total box office revenue: **67,195,370,225.19**
+- Revenue-to-budget ratio: **5.813x**
 
-Transform raw data into dashboard-ready analytics
+### Content Type Distribution
 
-Present insights through pivot charts and KPI summaries
+- Movie: **458 (44.04%)**
+- TV Series: **267 (25.67%)**
+- Documentary: **142 (13.65%)**
+- Stand-up Comedy: **119 (11.44%)**
+- Limited Series: **54 (5.19%)**
 
-Project Structure:
+### Top Languages
 
-Netflix_Movie_Data_Analysis
-│
-├── Raw Dataset
-│   └── Movies.csv
-│
-├── Cleaned Dataset
-│   └── Clean movies.xlsx
-│
-├── Dashboard Excel File
-│   └── Netflix Dashboard.xlsx
-│
-├── Dashboard
-│   └── Dashboard Screenshot.png
-│
-└── README.md
+- English: **608**
+- Spanish: **103**
+- French: **67**
+- Hindi: **60**
+- Japanese: **55**
 
+### Top Countries
 
-Dataset Summary
-Metric	Value
-Total Records	1040
-Total Columns	18
-Missing Values	0
-Release Year Range	1953 – 2024
-Netflix Originals	318
-Content Warning Titles	201
-Financial Metrics
-Metric	Value
-Total Production Budget	$11.56 Billion
-Total Box Office Revenue	$67.19 Billion
-Revenue to Budget Ratio	5.81x
-Content Type Distribution
-Content Type	Count	Percentage
-Movie	458	44.04%
-TV Series	267	25.67%
-Documentary	142	13.65%
-Stand-up Comedy	119	11.44%
-Limited Series	54	5.19%
+- USA: **543**
+- South Korea: **118**
+- Canada: **102**
+- UK: **88**
+- Japan: **57**
 
-Movies dominate the dataset, accounting for nearly half of all content.
+---
 
-Top Languages
-Language	Count
-English	608
-Spanish	103
-French	67
-Hindi	60
-Japanese	55
-Top Producing Countries
-Country	Content Count
-USA	543
-South Korea	118
-Canada	102
-UK	88
-Japan	57
-Dashboard Preview
+## 6. Cleaning Notes
 
-Add your dashboard screenshot here.
+The cleaned workbook (`Clean movies.xlsx`) uses a slightly transformed structure:
 
-![Dashboard](Dashboard/Dashboard Screenshot.png)
+- `movie_id` is split into `movie` and `id` columns
+- `title` is not retained in the cleaned sheet
+- Date values are stored in Excel serial format internally
 
-This allows viewers to see the dashboard directly on GitHub.
+Additional quality checks observed on raw data:
 
-Analytics Insights
+- `movie_id` duplicates found: **40** IDs (each repeated twice)
+- `title` duplicates found: **262** values (expected for reused/franchise naming)
+- Series metrics (`number_of_seasons`, `number_of_episodes`) are zero for most non-series records
 
-The pivot analysis focuses on:
+---
 
-Content Type Analysis
+## 7. Analytics View
 
-Content count by type
+The pivot analysis workbooks include:
 
-Average duration
+### Pivot Table 3 (by `content_type`)
 
-Average IMDb rating
+- Count of IDs
+- Average duration
+- Average IMDb rating
+- Sum of production budget
+- Sum of box office revenue
+- Sum of seasons
+- Sum of episodes
 
-Production budget comparison
+### Pivot Table 6 (by `country_of_origin`)
 
-Box office revenue comparison
+- Count of IDs
+- Sum of production budget
+- Sum of box office revenue
 
-Country Level Analysis
+Dashboard visuals include:
 
-Content production by country
+- Content type wise content count
+- Content type wise duration comparison
+- Average IMDb rating by content type
+- Investment vs return analysis
+- Country-wise investment vs return comparison
 
-Investment distribution
+---
 
-Revenue generation comparison
+## 8. Tools Used
 
-Tools Used
+- **Microsoft Excel**
+- Pivot Tables
+- Pivot Charts
+- Dashboard layout and KPI cards
 
-Google Sheets
+---
 
-Microsoft Excel
+## 9. Dashboard Image
 
-Pivot Tables
+![Dashboard](Dashboard/Screenshot%202026-02-24%20011043.png)
 
-Pivot Charts
+---
 
-Dashboard Visualization
+## 10. Conclusion
 
-Data Cleaning Notes
+This project demonstrates a complete Excel-based analytics pipeline from raw data to dashboard delivery.
 
-Several transformations were applied to prepare the dataset for analysis:
+Key takeaways:
 
-movie_id split into two columns
+- Movies represent the largest content share and largest financial contribution
+- Box office return is substantially higher than production investment at portfolio level
+- USA dominates both investment and revenue among origin countries
+- Rating and duration comparisons across content types provide useful segmentation signals
 
-Titles removed in cleaned dataset to simplify pivot tables
+Overall, the dashboard provides a practical foundation for content strategy review and further advanced analytics.
 
-Date values stored using Excel serial format
+---
 
-Duplicate checks performed
+## 11. Future Enhancements
 
-Observed issues in raw dataset:
-
-40 duplicate movie IDs
-
-262 duplicate titles
-
-Series metrics mostly zero for non-series content
-
-Conclusion
-
-The analysis reveals several key patterns within the dataset.
-
-Movies represent the largest share of content, making up over 44% of the catalog, indicating a strong focus on film production. Financial analysis shows a significant return on investment, with total box office revenue exceeding production budgets by more than 5.8 times.
-
-The dataset also highlights the dominance of English-language content and United States productions, although countries like South Korea, Canada, and Japan contribute notable volumes of content.
-
-Overall, this project demonstrates how Excel pivot tables and dashboards can transform raw entertainment industry data into actionable insights. The techniques used here can be applied to real-world streaming platform analytics and business intelligence scenarios.
+1. Add monthly/yearly trend analysis using `added_to_platform`
+2. Create Originals vs Non-Originals comparative dashboard page
+3. Build a separate data dictionary file with business definitions and units
+4. Introduce validation rules for unique ID integrity and duplicate tracking
